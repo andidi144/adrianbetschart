@@ -1,0 +1,16 @@
+#box {
+    background: transparent;
+    border: none;
+    font-size: 40px;
+    color: white;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+
+    width: 90%;
+}
