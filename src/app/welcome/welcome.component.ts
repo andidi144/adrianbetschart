@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
+import { WritingService } from '../writing.service';
 import { stringify } from 'querystring';
 
 
@@ -9,60 +10,45 @@ import { stringify } from 'querystring';
 })
 export class WelcomeComponent implements OnInit {
 
-    boxvalue = '';
+    welcomeInput = {
+        value: ''
+    };
+
+    martialartsLink = {
+        value: ''
+    };
+
+
+    linksVisible = false;
     stringToType = '';
     counter = 0;
     strangersName = '';
 
+    writingService: WritingService;
+
     @ViewChild('box') box: ElementRef;
     constructor() {
+        
     }
 
     ngOnInit(): void {
         setTimeout(() => this.box.nativeElement.focus());
 
-        setTimeout(() => this.typeText('Hello, my name is Adrian.'), 1000);
-
-        setTimeout(() => this.deleteText(), 5000);
-
-        setTimeout(() => this.typeText('What is your name? '), 8000);
-
-    }
-
-    showTextbox() {
-        console.log('Working');
+        this.writingService = new WritingService(['Hello, my name is Adrian.', 'What is your name? '], this.welcomeInput, 70, 50, 1000, 2000, 70, 50);
+        this.writingService.startWriting();
     }
 
     onEnter(text: string) {
         this.strangersName = text.substring(19, text.length);
         console.log(this.strangersName);
-        setTimeout(() => this.deleteText(), 500);
-        setTimeout(() => this.typeText('Hi ' + this.strangersName), 5500);
 
-        setTimeout(() => this.deleteText(), 7500);
+        this.writingService.deleteText();
 
-        setTimeout(() => this.typeText('What do you want to know about me?'), 9500);
+        this.writingService = new WritingService(['Hi ' + this.strangersName + '.', 'What do you want to know about me?'], this.welcomeInput, 70, 50, 1000, 70, 50, 2000);
 
+        setTimeout(() =>  this.writingService.startWriting(), 2000);
+
+        this.linksVisible = true;
     }
 
-    typeText(text: string) {
-        this.stringToType = text;
-        if (stringify.length > 0) {
-            this.boxvalue += text.substring(this.counter, this.counter + 1);
-            this.stringToType = this.stringToType.substring(1, this.stringToType.length);
-            setTimeout(() => {
-                this.typeText(this.stringToType);
-            }, Math.floor(Math.random() * 50) + 50);
-        }
-    }
-
-    deleteText() {
-        if (this.boxvalue.length > 0) {
-            this.boxvalue = this.boxvalue.substring(0, this.boxvalue.length - 1);
-
-            setTimeout(() => {
-                this.deleteText();
-            }, Math.floor(Math.random() * 50) + 50);
-        }
-    }
 }

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,7 +19,8 @@ import {NgxTypedJsModule} from 'ngx-typed-js';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxTypedJsModule
+    NgxTypedJsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

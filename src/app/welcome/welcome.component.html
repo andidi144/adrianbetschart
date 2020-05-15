@@ -1,3 +1,9 @@
 <p>welcome works!</p>
 
-<input id="box" #box (keyup.enter)="onEnter(box.value)" value={{boxvalue}}>
+<input id="box" #box (keyup.enter)="onEnter(box.value)" [(ngModel)]="welcomeInput.value">
+
+<div class="links">
+    <a ng-class="{'visible': this.linksVisible}" routerLink="/maritalarts" routerLinkActive="active">Martial arts</a>
+    <a ng-class="{'visible': this.linksVisible}" routerLink="/" routerLinkActive="active">Webdesign</a>
+    <a ng-class="{'visible': this.linksVisible}" routerLink="/" routerLinkActive="active">Gaming</a>
+</div>

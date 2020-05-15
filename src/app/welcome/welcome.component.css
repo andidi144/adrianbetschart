@@ -14,3 +14,25 @@
 
     width: 90%;
 }
+
+.visible {
+    color: white;
+}
+
+
+.links {
+    position: absolute;
+
+    left: 50%;
+    top: calc(50% + 150px);
+
+    transform: translate(-50%, 0%);
+
+}
+
+.links a {
+    font-size: 40px;
+    color: blue;
+
+    text-decoration: none;
+}
